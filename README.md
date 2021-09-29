@@ -8,7 +8,7 @@
     ```
 2. Build from rescript
     ```
-    yarn re:buid` or yarn re:start
+    yarn re:buid or yarn re:start
     ```
 3. Start the dev server
     ```
