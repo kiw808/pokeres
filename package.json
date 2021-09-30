@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "bs-platform": "^9.0.2",
+    "prettier": "^2.4.1",
     "rescript": "^9.1.4"
   }
 }
