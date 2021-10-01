@@ -6,3 +6,21 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 1em 0 0.5em 0;
+}
+
+/* Single Pokemon */
+.single-pokemon {
+    background-color: moccasin;
+    padding: 2rem;
+}
+
+.single-pokemon li {
+    margin-left: 1em;
+}
