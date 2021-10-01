@@ -37,36 +37,49 @@ module NameString: {
   let toString: t => string
   let make: string => t
 } = {
-  type t =
-    | GoodName(string)
-    | BadName(string)
+  type t = string
 
+  let toString = t => t
+  let make = str => str
+}
+
+module UrlString: {
+  type t
+  let toString: t => string
+  let make: string => t
+} = {
+  type t = string
+
+  let toString = t => t
+  let make = str => str
+}
+
+module PokemonType: {
+  type t
+  let make: string => option<t>
+  let toString: t => string
+} = {
+  type t = Poison | Grass
+
+  let make = str =>
+    switch str {
+    | "grass" => Some(Grass)
+    | "poison" => Some(Poison)
+    | _ => None
+    }
   let toString = t =>
     switch t {
-    | GoodName(str) => "Good name :" ++ str
-    | BadName(str) => "Bad name :" ++ str
+    | Grass => "grass"
+    | Poison => "poison"
     }
-  let make = str => str === "Pierre" ? GoodName(str) : BadName(str)
 }
 
 // Record
-type t = {
-  name: NameString.t,
-  size: size,
-  elementType: PokeElement.element,
-}
+type t = {name: NameString.t, url: UrlString.t}
 
 @react.component
-let make = (~pokemon, ~image=?) => {
-  let imageComponent = switch image {
-  | Some(src) => <img src={src} />
-  | None => React.null
-  }
+let make = (~pokemon) => {
   let name = pokemon.name |> NameString.toString |> React.string // Pipe last
-  <div>
-    <h3> {name} </h3>
-    imageComponent
-    <PokeElement element=pokemon.elementType />
-    {React.string((pokemon.size :> string))}
-  </div>
+  let url = pokemon.url |> UrlString.toString
+  <div> <h3> {name} </h3> <a href={url}> {React.string("Lien")} </a> </div>
 }

@@ -2,7 +2,6 @@ let name =
   Data.data.results
   ->Belt.Array.get(0)
   ->Belt.Option.map(({name}) => name)
-  ->Belt.Option.map(Js.String.concat("toto"))
   ->Belt.Option.getWithDefault("Pikachu")
   ->PokeCard.NameString.make
 
@@ -12,10 +11,19 @@ let name2 = switch resultOption {
 | None => "Pikachu"
 }->PokeCard.NameString.make
 
+let url =
+  Data.data.results
+  ->Belt.Array.get(0)
+  ->Belt.Option.map(({url}) => url)
+  ->Belt.Option.getWithDefault("#")
+  ->PokeCard.UrlString.make
+
+Js.log(name)
+Js.log(url)
+
 let pokemon: PokeCard.t = {
   name: name,
-  size: #XS,
-  elementType: PokeCard.PokeElement.Fire,
+  url: url,
 }
 
 @react.component
