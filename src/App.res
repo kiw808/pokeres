@@ -1,3 +1,4 @@
+/*
 let name =
   Data.data.results
   ->Belt.Array.get(0)
@@ -25,8 +26,17 @@ let pokemon: PokeCard.t = {
   name: name,
   url: url,
 }
+*/
+
+let name = Fixtures.data.name
+let species = Fixtures.data.species.name
+
+let pokemon: SinglePokemon.t = {
+  name: name,
+  species: species,
+}
 
 @react.component
 let make = () => {
-  <div> <PokeCard pokemon /> </div>
+  <div> <SinglePokemon pokemon /> </div>
 }
