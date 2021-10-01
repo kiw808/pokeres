@@ -28,13 +28,13 @@ let pokemon: PokeCard.t = {
 }
 */
 
-let name = Fixtures.data.name
-let species = Fixtures.data.species.name
-
-let pokemon: SinglePokemon.t = {
-  name: name,
-  species: species,
+let make: Fixtures.t => SinglePokemon.t = fixture => {
+  let {name, species, types} = fixture
+  let types = Belt.Array.map(types, pokeType => pokeType.\"type".name)
+  {name: name, species: species.name, types: types}
 }
+
+let pokemon: SinglePokemon.t = make(Fixtures.data)
 
 @react.component
 let make = () => {
