@@ -28,15 +28,30 @@ let pokemon: PokeCard.t = {
 }
 */
 
-let make: Fixtures.t => SinglePokemon.t = fixture => {
+let makeList: Fixtures.ListFixture.t => ListPokemons.t = fixture => {
+  let {results} = fixture
+  let pokemonsList = Belt.Array.map(results, pokemon => pokemon.name)
+  {pokemonsList}
+}
+
+let makeSinglePokemon: Fixtures.SinglePokemonFixture.t => SinglePokemon.t = fixture => {
   let {name, species, types} = fixture
   let types = Belt.Array.map(types, pokeType => pokeType.\"type".name)
   {name: name, species: species.name, types: types}
 }
 
-let pokemon: SinglePokemon.t = make(Fixtures.data)
+// Get the list of pokemons
+let pokemonList: ListPokemons.t = makeList(Fixtures.ListFixture.data)
+// Get a list of pokemons
+let pokemon: SinglePokemon.t = makeSinglePokemon(Fixtures.SinglePokemonFixture.data)
 
 @react.component
 let make = () => {
-  <div> <SinglePokemon pokemon /> </div>
+  let url = RescriptReactRouter.useUrl()
+
+  switch url.path {
+  | list{} => <ListPokemons pokemonList />
+  | list{"pokemon"} => <SinglePokemon pokemon />
+  | _ => <NotFound />
+  }
 }
