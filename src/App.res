@@ -30,7 +30,11 @@ let pokemon: PokeCard.t = {
 
 let makeList: Fixtures.ListFixture.t => ListPokemons.t = fixture => {
   let {results} = fixture
-  let pokemonsList = Belt.Array.map(results, pokemon => pokemon.name)
+  let pokemonsList = Belt.Array.mapWithIndex(results, (index, pokemon): ListPokemons.pokemon => {
+    id: index + 1,
+    name: pokemon.name,
+    url: pokemon.url,
+  })
   {pokemonsList}
 }
 
