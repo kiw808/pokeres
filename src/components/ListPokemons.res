@@ -13,5 +13,5 @@ let make = (~pokemonList: t) => {
     <li> <Link url str /> </li>
   })->React.array
 
-  <div> {React.string("List of pokemons")} <div> <ul> {pokemonList} </ul> </div> </div>
+  <div> <h2> {React.string("List of pokemons")} </h2> <div> <ul> {pokemonList} </ul> </div> </div>
 }

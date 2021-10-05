@@ -1,13 +1,3 @@
-// module PokeTypes = {
-//   type t = Grass | Poison
-//   let poketype = t =>
-//     switch t {
-//     | "grass" => Some(Grass)
-//     | "poison" => Some(Poison)
-//     | _ => None
-//     }
-// }
-
 type t = {
   name: string,
   species: string,
@@ -21,7 +11,7 @@ let make = (~pokemon) => {
   let types =
     pokemon.types->Belt.Array.map(pokeType => <li> {pokeType |> React.string} </li>)->React.array
   <div>
-    {React.string("Single Pokemon")}
+    <h2> {React.string("Single Pokemon")} </h2>
     <div className="single-pokemon">
       <h3> {name} </h3>
       <h5> {React.string("Species:")} </h5>

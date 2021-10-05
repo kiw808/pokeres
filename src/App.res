@@ -25,9 +25,11 @@ let pokemon: SinglePokemon.t = makeSinglePokemon(Fixtures.SinglePokemonFixture.d
 let make = () => {
   let url = RescriptReactRouter.useUrl()
 
-  switch url.path {
-  | list{} => <ListPokemons pokemonList />
-  | list{"pokemon"} => <SinglePokemon pokemon />
-  | _ => <NotFound />
-  }
+  <div className="container">
+    {switch url.path {
+    | list{} => <ListPokemons pokemonList />
+    | list{"pokemon"} => <SinglePokemon pokemon />
+    | _ => <NotFound />
+    }}
+  </div>
 }
