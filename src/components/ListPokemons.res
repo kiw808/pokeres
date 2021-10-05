@@ -4,7 +4,14 @@ type t = array<pokemon>
 
 @react.component
 let make = (~pokemonList: t) => {
-  let pokemonList =
-    Belt.Array.map(pokemonList, pokemon => <li> {pokemon.name |> React.string} </li>)->React.array
+  let entryPoint = "/pokemon/"
+
+  let pokemonList = Belt.Array.map(pokemonList, pokemon => {
+    let url = entryPoint ++ pokemon.id->Belt.Int.toString
+    let str = pokemon.name
+
+    <li> <Link url str /> </li>
+  })->React.array
+
   <div> {React.string("List of pokemons")} <div> <ul> {pokemonList} </ul> </div> </div>
 }
