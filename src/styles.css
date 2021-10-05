@@ -15,6 +15,10 @@ h5 {
     margin: 1em 0 0.5em 0;
 }
 
+.container {
+    margin: 2rem 5rem;
+}
+
 /* Single Pokemon */
 .single-pokemon {
     background-color: moccasin;
