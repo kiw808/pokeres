@@ -28,6 +28,10 @@ let make = (~id) => {
       })
       ->React.array
 
+    // Link props bindings
+    let url = "/"
+    let str = "Back to list"
+
     <div>
       <h2> {React.string("Single Pokemon")} </h2>
       <div className="single-pokemon">
@@ -37,6 +41,7 @@ let make = (~id) => {
         <h5> {React.string("Types:")} </h5>
         <ul> {types} </ul>
       </div>
+      <Link url str />
     </div>
   }
 }
