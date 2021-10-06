@@ -14,7 +14,7 @@ let make = (~id) => {
 
   switch pokemon {
   | None => React.null
-  | Some({name, species, types}) =>
+  | Some({name, species, types, image}) =>
     let name = name |> React.string
     let species = switch species {
     | Some(species) => React.string(species)
@@ -35,11 +35,14 @@ let make = (~id) => {
     <div>
       <h2> {React.string("Single Pokemon")} </h2>
       <div className="single-pokemon">
-        <h3> {name} </h3>
-        <h5> {React.string("Species:")} </h5>
-        <p> {species} </p>
-        <h5> {React.string("Types:")} </h5>
-        <ul> {types} </ul>
+        <div> <img src={image} /> </div>
+        <div>
+          <h3> {name} </h3>
+          <h5> {React.string("Species:")} </h5>
+          <p> {species} </p>
+          <h5> {React.string("Types:")} </h5>
+          <ul> {types} </ul>
+        </div>
       </div>
       <Link url str />
     </div>

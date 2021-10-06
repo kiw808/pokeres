@@ -19,11 +19,13 @@ module ListFixture = {
 }
 
 module SinglePokemonFixture = {
+  // Species
   type species = {
     name: option<string>,
     url: string,
   }
 
+  // Types
   type pokeTypeData = {
     name: string,
     url: string,
@@ -34,12 +36,20 @@ module SinglePokemonFixture = {
     \"type": pokeTypeData,
   }
 
-  type t = {id: int, name: string, species: species, types: array<pokeType>}
+  // Sprites
+  type officialArtwork = {front_default: string}
+
+  type other = {\"official-artwork": officialArtwork}
+
+  type sprites = {other: other}
+
+  type t = {id: int, name: string, species: species, types: array<pokeType>, sprites: sprites}
 
   // Building a single pokemon
   let toPokemon: t => Pokemon.t = fixture => {
-    let {id, name, species, types} = fixture
+    let {id, name, species, types, sprites} = fixture
     let types = Belt.Array.map(types, pokeType => pokeType.\"type".name)
-    {id: id, name: name, species: species.name, types: types}
+    let image = sprites.other.\"official-artwork".front_default
+    {id: id, name: name, species: species.name, types: types, image: image}
   }
 }

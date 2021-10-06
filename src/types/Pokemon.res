@@ -3,4 +3,5 @@ type t = {
   name: string,
   species: option<string>,
   types: array<string>,
+  image: string,
 }
