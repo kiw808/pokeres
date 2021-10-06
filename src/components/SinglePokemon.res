@@ -21,7 +21,12 @@ let make = (~id) => {
     | None => React.null
     }
     let types =
-      types->Belt.Array.map(pokeType => <li> {pokeType |> React.string} </li>)->React.array
+      types
+      ->Belt.Array.mapWithIndex((index, pokeType) => {
+        let key = Belt.Int.toString(index)
+        <li key> {pokeType |> React.string} </li>
+      })
+      ->React.array
 
     <div>
       <h2> {React.string("Single Pokemon")} </h2>
