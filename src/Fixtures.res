@@ -7,9 +7,9 @@ module ListFixture = {
   type t = {results: array<pokemon>}
 
   // Building the list of pokemons
-  let toList: t => ListPokemons.t = fixture => {
+  let toList: t => PokemonList.t = fixture => {
     let {results} = fixture
-    let pokemonsList = Belt.Array.mapWithIndex(results, (index, pokemon): ListPokemons.pokemon => {
+    let pokemonsList = Belt.Array.mapWithIndex(results, (index, pokemon): PokemonList.pokemon => {
       id: index + 1,
       name: pokemon.name,
       url: pokemon.url,

@@ -1,9 +1,5 @@
-type pokemon = {id: int, name: string, url: string}
-
-type t = array<pokemon>
-
 @react.component
-let make = (~pokemonList: t) => {
+let make = (~pokemonList: PokemonList.t) => {
   let entryPoint = "/pokemon/"
 
   let pokemonList = Belt.Array.map(pokemonList, pokemon => {

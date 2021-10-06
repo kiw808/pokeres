@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  let (pokemonList: option<ListPokemons.t>, setPokemonList) = React.useState(() => None)
+  let (pokemonList: option<PokemonList.t>, setPokemonList) = React.useState(() => None)
 
   React.useEffect(() => {
     Fetch.Pokemon.getAll()
