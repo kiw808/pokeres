@@ -6,12 +6,21 @@ module ListFixture = {
 
   type t = {results: array<pokemon>}
 
-  let data: t = %raw("require('./data/pokemons.json')")
+  // Building the list of pokemons
+  let toList: t => ListPokemons.t = fixture => {
+    let {results} = fixture
+    let pokemonsList = Belt.Array.mapWithIndex(results, (index, pokemon): ListPokemons.pokemon => {
+      id: index + 1,
+      name: pokemon.name,
+      url: pokemon.url,
+    })
+    {pokemonsList}
+  }
 }
 
 module SinglePokemonFixture = {
   type species = {
-    name: string,
+    name: option<string>,
     url: string,
   }
 
@@ -25,7 +34,12 @@ module SinglePokemonFixture = {
     \"type": pokeTypeData,
   }
 
-  type t = {name: string, species: species, types: array<pokeType>}
+  type t = {id: int, name: string, species: species, types: array<pokeType>}
 
-  let data: t = %raw("require('./data/pokemon.json')")
+  // Building a single pokemon
+  let toPokemon: t => Pokemon.t = fixture => {
+    let {id, name, species, types} = fixture
+    let types = Belt.Array.map(types, pokeType => pokeType.\"type".name)
+    {id: id, name: name, species: species.name, types: types}
+  }
 }
