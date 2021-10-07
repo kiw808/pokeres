@@ -2,7 +2,7 @@
 let make = () => {
   let (pokemonList: option<PokemonList.t>, setPokemonList) = React.useState(() => None)
 
-  React.useEffect(() => {
+  React.useEffect0(() => {
     Fetch.Pokemon.getAll()
     |> Js.Promise.then_(pokemonList => {
       setPokemonList(_ => pokemonList)
