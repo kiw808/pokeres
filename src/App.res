@@ -2,7 +2,7 @@
 let make = () => {
   let (pokemonList: option<PokemonList.t>, setPokemonList) = React.useState(() => None)
 
-  React.useEffect0(() => {
+  React.useEffect1(() => {
     Fetch.Pokemon.getAll()
     |> Js.Promise.then_(pokemonList => {
       setPokemonList(_ => pokemonList)
@@ -10,7 +10,7 @@ let make = () => {
     })
     |> ignore
     None
-  })
+  }, [setPokemonList])
 
   let url = RescriptReactRouter.useUrl()
 
