@@ -21,10 +21,12 @@ h5 {
 
 /* Single Pokemon */
 .single-pokemon {
+    display: flex;
     background-color: moccasin;
     padding: 2rem;
+    margin-bottom: 1rem;
 }
 
 .single-pokemon li {
-    margin-left: 1em;
+    margin-left: 1rem;
 }
